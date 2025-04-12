@@ -6462,12 +6462,6 @@ CONFIG_SM5714_WATER_DETECTION_ENABLE=y
 CONFIG_SM5714_SUPPORT_SBU=y
 # CONFIG_SM5714_DISABLE_PD is not set
 
-#
-# KernelSU
-#
-CONFIG_KSU=y
-# CONFIG_KSU_DEBUG is not set
-# end of KernelSU
 # end of Device Drivers
 
 #
