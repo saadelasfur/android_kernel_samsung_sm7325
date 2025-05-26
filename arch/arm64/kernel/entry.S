@@ -1093,10 +1093,10 @@ alternative_else_nop_endif
 #endif
 	.endm
 
-#define BHB_MITIGATION_NONE	0
-#define BHB_MITIGATION_LOOP	1
-#define BHB_MITIGATION_FW	2
-#define BHB_MITIGATION_INSN	3
+	#define BHB_MITIGATION_NONE	0
+	#define BHB_MITIGATION_LOOP	1
+	#define BHB_MITIGATION_FW	2
+	#define BHB_MITIGATION_INSN	3
 
 	.macro tramp_ventry, vector_start, regsize, kpti, bhb
 	.align	7
@@ -1105,7 +1105,7 @@ alternative_else_nop_endif
 	msr	tpidrro_el0, x30	// Restored in kernel_ventry
 	.endif
 
-	.if	\bhb == BHB_MITIGATION_LOOP
+		.if	\bhb == BHB_MITIGATION_LOOP
 	/*
 	 * This sequence must appear before the first indirect branch. i.e. the
 	 * ret out of tramp_ventry. It appears here because x30 is free.
@@ -1221,7 +1221,7 @@ __entry_tramp_data_start:
 __entry_tramp_data_vectors:
 	.quad	vectors
 #ifdef CONFIG_ARM_SDE_INTERFACE
-__entry_tramp_data___sdei_asm_handler:
+__entry_tramp_data___sdei_asm_trampoline_next_handler:
 	.quad	__sdei_asm_handler
 #endif /* CONFIG_ARM_SDE_INTERFACE */
 __entry_tramp_data_this_cpu_vector:
@@ -1358,7 +1358,7 @@ ENTRY(__sdei_asm_entry_trampoline)
 	 */
 1:	str	x4, [x1, #(SDEI_EVENT_INTREGS + S_ORIG_ADDR_LIMIT)]
 
-	tramp_data_read_var     x4, __sdei_asm_handler
+	tramp_data_read_var     x4, __sdei_asm_trampoline_next_handler
 	br	x4
 ENDPROC(__sdei_asm_entry_trampoline)
 NOKPROBE(__sdei_asm_entry_trampoline)

@@ -113,7 +113,7 @@ el1_hvc_guest:
 	/* ARM_SMCCC_ARCH_WORKAROUND_2 handling */
 	eor	w1, w1, #(ARM_SMCCC_ARCH_WORKAROUND_1 ^ \
 			  ARM_SMCCC_ARCH_WORKAROUND_2)
-	cbz	w1, wa_epilogue
+		cbz	w1, wa_epilogue
 
 	eor	w1, w1, #(ARM_SMCCC_ARCH_WORKAROUND_2 ^ \
 			  ARM_SMCCC_ARCH_WORKAROUND_3)
