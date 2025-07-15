@@ -167,7 +167,6 @@ endif
 ifdef TFA_USE_THERMAL_SENSOR
 ccflags-y               += -DTFA_USE_THERMAL_SENSOR
 endif
-ccflags-y		+= $(call cc-disable-warning, enum-conversion)
 
 # objs
 snd-soc-tfa98xx-objs    := tfa98xx.o
